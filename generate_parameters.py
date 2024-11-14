@@ -32,7 +32,7 @@ def initialize_R(lam, dt=1/252,past_prices=None, max_delta=1000, transform=ident
     :param transform: should be identity for R_1 and squared for R_2.
     :return: torch.tensor of size 2. containing R_j1 and R_j2
     """
-    returns = (past_prices - past_prices.shift(1)) / past_prices.shift(1)
+    returns = 1 - past_prices.shift(1) / past_prices
     returns = torch.tensor(returns.values, device=lam.device)[-max_delta:].flip(0)
     timestamps = torch.arange(returns.shape[0], device=lam.device) * dt
     timestamps.unsqueeze_(0)
