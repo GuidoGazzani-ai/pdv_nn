@@ -27,7 +27,7 @@ from times_to_maturity import maturities_joint_func, extract_monthly_VIX, extrac
 
 
 ### my flags
-#flag_old_rates=False
+
 yfinance=False
 flag_cluster=True
 flag_save_plots=True
@@ -241,30 +241,6 @@ torch_strikes_vix_unnormalized=[convert_to_tensor_arr(loaded_dict_vix["strikes_v
 tensor_las_vegas_vix=[convert_to_tensor_arr(loaded_dict_vix["las_vegas_by_mat_vix"][i]).to(device)/torch.sum(convert_to_tensor_arr(loaded_dict_vix["las_vegas_by_mat_vix"][i])) for i in indices]  
     
 
-
-    # ###################### HERE TO INCLUDE FUNCTION TO TO SELECT NON-MONTHLY OPTIONS
-    
-    # ### SPX
-    # tensor_spx_mat=convert_to_tensor_arr(loaded_dict_spx["maturities_spx"]).to(device)
-    # discount_spx=convert_to_tensor_arr(loaded_dict_spx["discount_spx"]).to(device)
-    # forward_scaled_spx=convert_to_tensor_arr(loaded_dict_spx["forward_scaled_spx"]).to(device)
-    # tensor_strikes_spx=numpy_arrays_to_tensors(loaded_dict_spx["strikes_spx"],device)
-    # tensor_bid_ivol_spx=numpy_arrays_to_tensors(loaded_dict_spx["bid"],device)
-    # tensor_ask_ivol_spx=numpy_arrays_to_tensors(loaded_dict_spx["ask"],device)
-    # tensor_mid_ivol_spx=numpy_arrays_to_tensors(loaded_dict_spx["mid"],device)
-    # tensor_las_vegas_spx=numpy_arrays_to_tensors([el/sum(el) for el in loaded_dict_spx['las_vegas_by_mat_spx']],device)
-    
-    # ### VIX
-    # tensor_spx_mat=loaded_dict_vix["maturities_vix"]
-    # tensor_vix_futures=loaded_dict_vix["future"]
-    # discount_vix=loaded_dict_vix["discount_vix"]
-    # tensor_prices_vix=loaded_dict_vix["prices_vix"]    
-    # tensor_bid_ivol_vix=loaded_dict_vix["bid"]
-    # tensor_ask_ivol_vix=loaded_dict_vix["ask"]
-    # tensor_mid_ivol_vix=loaded_dict_vix["mid"]
-    # torch_strikes_vix_unnormalized=loaded_dict_vix["strikes_vix"]
-    # #tensor_las_vegas_vix=loaded_dict_vix["las_vegas_by_mat_vix"]
-
 list_of_mat_idxs_spx=[int(torch.ceil(tensor_spx_mat[j] / torch_mc.timestep)) for j in range(len(tensor_spx_mat))]
 list_of_mat_idxs_spx=torch.tensor(list_of_mat_idxs_spx)
 
@@ -277,8 +253,6 @@ print('Las Vegas SPX:',tensor_las_vegas_spx)
 print('Las Vegas VIX:',tensor_las_vegas_vix)
 
 ############################# LOAD THE NEURAL NETWORK
-
-
 
 directory_pre_trained_network=r'/home/'+user+'/PDV/vix_nested/parameter_set_1/all_nns/'
 os.chdir(directory_pre_trained_network)
@@ -334,8 +308,6 @@ if flag_run_pricing_examples:
                     std_scaling_Rs,list_of_mat_idxs_vix,N,[0],device)
     
     print('Model Future:\n',vixy.mean())
-    
-    
     print('Model VIX prices:\n',torch.mean(torch_payoff_call_vix_select_mat(vixy, torch_strikes_vix_unnormalized,discount_vix,tensor_vix_mat,[0],device)[0],axis=0))
 
 ########################## END EXAMPLE
@@ -428,25 +400,9 @@ def loss_spx_ivs(torch_mc,tensor_mid_ivol_spx,tensor_bid_ivol_spx,tensor_ask_ivo
             diff+=omega_spx*(1/len(idxs_spx))*diff_ivs
     return diff
 
-# print(loss_vix_prices_torch(parameters,torch_strikes_vix_unnormalized,tensor_prices_vix,
-#                           tensor_vix_futures,tensor_las_vegas_vix,tensor_bid_ivol_vix,tensor_ask_ivol_vix,
-#                           loaded_model,torch_mc,mean_scaling_VIX,std_scaling_VIX,
-#                           mean_scaling_parameters,discount_vix,tensor_vix_mat,
-#                           std_scaling_parameters,mean_scaling_Rs,std_scaling_Rs,
-#                           list_of_mat_idxs_vix,N,[0],device,omega_vix,omega_futures,False))
-
-# print(loss_vix_prices_torch(parameters,torch_strikes_vix_unnormalized,tensor_prices_vix,
-#                           tensor_vix_futures,tensor_las_vegas_vix,tensor_bid_ivol_vix,tensor_ask_ivol_vix,
-#                           loaded_model,torch_mc,mean_scaling_VIX,std_scaling_VIX,
-#                           mean_scaling_parameters,discount_vix,tensor_vix_mat,
-#                           std_scaling_parameters,mean_scaling_Rs,std_scaling_Rs,
-#                           list_of_mat_idxs_vix,N,[0],device,omega_vix,omega_futures,True))
-
 
 
 if flag_joint:
-    # idxs_spx=[0,1,2]
-    # idxs_vix=[0,1]
     idxs_spx=[0,1]
     idxs_vix=[0]
     
@@ -849,8 +805,6 @@ def wrapped_function_VIX(parameters):
 
 
 
-
-
 if OPTIMIZER=='PYBOBYQA':
     if flag_only_vix:
         parameters_init=np.array(df_params_init["init_VIX"])
@@ -876,19 +830,12 @@ if OPTIMIZER=='PYBOBYQA':
                                 mean_scaling_parameters,std_scaling_parameters,mean_scaling_Rs,std_scaling_Rs,
                                 device,maturities_vix,user,day,True,True,flag_only_monthly,OPTIMIZER)
     elif flag_only_spx:
-        
         os.chdir(r'/home/ag_cu-student/PDV/bnp/calibration/20231025/only_monthly/SPX_[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]_VIX_[0]/after_calib')
-        
         with open('dictionary_results_SPX_[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]_PYBOBYQA.pkl', 'rb') as f:
             aux = pickle.load(f)
         print('Successfully past calib')
-        
-        
-        
-        #parameters_init=aux['parameters']
+
         parameters_init=np.array([36.7037,12.180,97.4724,1.3172,0.0365952,-0.219749,0.566652,0.25130,0.466686,0.682552])
-        
-        
         
         list_save_results_spx={}
         t0 = time.time()
@@ -900,16 +847,7 @@ if OPTIMIZER=='PYBOBYQA':
         list_save_results_spx[OPTIMIZER+'_SPX_'+str(idxs_spx)]=[res_spx.x,res_spx.f,(t1-t0)/60]
         
         print('Results:',[res_spx.x,res_spx.f,(t1-t0)/60])
-        # N,timestep_per_day=400000,1
-    
-    
-        # ivs_spx=return_spx_results(list_save_results_spx['PYBOBYQA_SPX_'+str(idxs_spx)][0],idxs_vix,idxs_spx,N,timestep_per_day,spx,
-        #                         tensor_spx_mat,tensor_vix_mat,tensor_strikes_spx,tensor_bid_ivol_spx,
-        #                         tensor_ask_ivol_spx, maturities_spx,
-        #                         discount_spx,forward_scaled_spx,device,user,day,True,True,flag_only_monthly,OPTIMIZER)
-     
-        
-        
+              
         N,timestep_per_day=400000,1
        
         ivs_spx, iv_calibrated_VIX=return_joint_results(list_save_results_spx['PYBOBYQA_SPX_'+str(idxs_spx)][0],idxs_vix,idxs_spx,N,timestep_per_day,spx,
