@@ -10,8 +10,6 @@ import pandas as pd
 import torch
 import os
 
-#from sampler_PDV import identity, squared, initialize_R
-
 cluster_flag=False
 nbr_samples=10000
 flag_beta_12=True
