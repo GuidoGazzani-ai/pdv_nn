@@ -6,13 +6,13 @@ Created on Mon Sep 11 22:35:59 2023
 """
 
 from sampler_PDV_bnp import *
-#from sampler_discrete_torch_PDV import *
 from pricing_vix_neural_bnp import *
 import pickle
 import matplotlib.pyplot as plt
 import os
 
-user='ag_cu-student'
+user='ag_cu-student' 
+#Forget the previous user if you are using these functions locally: the user variable is only meant for directories (see below)
 
 
 def initialize_R(lam, dt,past_prices=None, max_delta=1000, transform=identity):
