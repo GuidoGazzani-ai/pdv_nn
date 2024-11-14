@@ -1,6 +1,6 @@
 # pdv_nn
 
-This is a collection Python files and Jupyter notebook used in the article:<br><br> <a href="https://arxiv.org/abs/2406.02319">
+This is a collection of Python files and Jupyter notebooks used in the article:<br><br> <a href="https://arxiv.org/abs/2406.02319">
 "Pricing and calibration in the 4-factor path-dependent volatility model"</a> <br><br>
 of <a href ="https://homepage.univie.ac.at/guido.gazzani/">Guido Gazzani</a> and <a href ="https://cermics.enpc.fr/~guyon/">Julien Guyon</a>.
 
