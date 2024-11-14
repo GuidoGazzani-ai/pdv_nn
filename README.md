@@ -15,3 +15,5 @@ Gazzani, G.; Guyon, J. Pricing and calibration in the 4-factor path-dependent vo
       journal={Preprint arXiv:2406.02319},
       year={2024}}
 ```
+
+![Example](4FPDV_simulation_scatter_0.png)
