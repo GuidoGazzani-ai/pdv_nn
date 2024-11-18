@@ -11,7 +11,7 @@ Gazzani, Guido and Guyon, Julien Pricing and calibration in the 4-factor path-de
 ```
 @article{GG:24,
       title={{Pricing and calibration in the 4-factor path-dependent volatility model}}, 
-      author={Gazzani, G. and Guyon J.},
+      author={Gazzani, Guido and Guyon, Julien},
       journal={Preprint arXiv:2406.02319},
       year={2024}}
 ```
