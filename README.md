@@ -7,7 +7,7 @@ of <a href ="https://homepage.univie.ac.at/guido.gazzani/">Guido Gazzani</a> and
 
 For citations:\
 **MDPI and ACS Style**\
-Gazzani, G.; Guyon, J. Pricing and calibration in the 4-factor path-dependent volatility model.
+Gazzani, Guido and Guyon, Julien Pricing and calibration in the 4-factor path-dependent volatility model.
 ```
 @article{GG:24,
       title={{Pricing and calibration in the 4-factor path-dependent volatility model}}, 
