@@ -7,7 +7,7 @@ of <a href ="https://homepage.univie.ac.at/guido.gazzani/">Guido Gazzani</a> and
 
 For citations:\
 **MDPI and ACS Style**\
-Gazzani, Guido and Guyon, Julien, "Pricing and calibration in the 4-factor path-dependent volatility model", 2024.
+
 ```
 @article{GG:24,
       title={{Pricing and calibration in the 4-factor path-dependent volatility model}}, 
