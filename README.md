@@ -6,7 +6,6 @@ of <a href ="https://homepage.univie.ac.at/guido.gazzani/">Guido Gazzani</a> and
 
 
 For citations:\
-**MDPI and ACS Style**\
 
 ```
 @article{GG:24,
