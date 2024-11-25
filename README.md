@@ -5,7 +5,7 @@ This is a collection of Python files and Jupyter notebooks used in the article:<
 of <a href ="https://homepage.univie.ac.at/guido.gazzani/">Guido Gazzani</a> and <a href ="https://cermics.enpc.fr/~guyon/">Julien Guyon</a>.
 
 
-For citations:\
+For citations:
 
 ```
 @article{GG:24,
