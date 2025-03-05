@@ -8,7 +8,7 @@ of <a href ="https://homepage.univie.ac.at/guido.gazzani/">Guido Gazzani</a> and
 For citations:
 
 ```
-@article{GG:24,
+@article{GG:25,
       title={{Pricing and calibration in the 4-factor path-dependent volatility model}}, 
       author={Gazzani, Guido and Guyon, Julien},
       journal={To appear in Quantitative Finance},
