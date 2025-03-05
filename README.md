@@ -11,8 +11,8 @@ For citations:
 @article{GG:24,
       title={{Pricing and calibration in the 4-factor path-dependent volatility model}}, 
       author={Gazzani, Guido and Guyon, Julien},
-      journal={Preprint arXiv:2406.02319},
-      year={2024}}
+      journal={To appear in Quantitative Finance},
+      year={2025}}
 ```
 
 ![Example](figures/4FPDV_simulation_scatter_0.png)
